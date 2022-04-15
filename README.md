@@ -1,2 +1,2 @@
 # drama-next
-K-drama recommendation system
+Ever wonder what to watch after that one kdrama?
