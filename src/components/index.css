@@ -26,6 +26,10 @@ html, body {
 }
 
 input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
     border-top-style: hidden;
     border-right-style: hidden;
     border-left-style: hidden;
