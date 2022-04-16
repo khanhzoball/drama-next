@@ -3,12 +3,34 @@ html, body {
     height: 100%;
 }
 
+.search-input::-webkit-input-placeholder {
+    font-family: 'Courier Prime', monospace;
+}
+
+.search-input:-ms-input-placeholder {
+    font-family: 'Courier Prime', monospace;
+}
+
+.search-input:-moz-placeholder {
+    font-family: 'Courier Prime', monospace;
+}
+
+.search-input::-moz-placeholder {
+    font-family: 'Courier Prime', monospace;
+}
+
 .hero-container {
     display: flex;
     align-items: center;
-    padding-top: 1em;
+    padding-top: 2em;
 }
 
+input {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+}
 
 /* The hero image */
 .hero-image {
@@ -17,4 +39,59 @@ html, body {
     display: block;
     object-fit: cover;
     position: center;
+}
+
+.slogan {
+    color: rgb(55, 53, 47);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    margin-top: 1em;
+}
+
+.search-description {
+    font-size: 14px;
+    font-weight: 700;
+    width: 650px;
+    margin: 0 auto;
+    margin-top: 1em;
+    color: rgb(217, 115, 13);
+    background-color: rgb(251, 236, 221);
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.search-box {
+    margin: 0 auto;
+}
+
+.search-bar {
+    margin: 0 auto;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.search-input {
+    width: 400px;
+    font-family: 'Courier Prime', monospace;
+    border-bottom-style: groove;
+    outline: none;
+}
+
+.search-icon {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    border-width: 2px ;
+    border-bottom-style: groove;
+    border-color: rgb(118, 118, 118);
+}
+
+SearchIcon {
+    background-color: transparent;
 }
