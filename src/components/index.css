@@ -1,3 +1,20 @@
 html, body {
     font-family: 'Courier Prime', monospace;
+    height: 100%;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    padding-top: 1em;
+}
+
+
+/* The hero image */
+.hero-image {
+    height: 30vh;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    position: center;
 }
