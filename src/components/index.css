@@ -28,11 +28,19 @@ html, body {
 input[type="search"] {
     -webkit-appearance: none;
     -moz-appearance: none;
+
+    border-width: 2px ;
+    border-bottom-style: groove;
+    border-color: rgb(118, 118, 118);
 }
 
 input[type="text"] {
     -webkit-appearance: none;
     -moz-appearance: none;
+
+    border-width: 2px ;
+    border-bottom-style: groove;
+    border-color: rgb(118, 118, 118);
 }
 
 input {
@@ -45,6 +53,10 @@ input {
     border-right-style: hidden;
     border-left-style: hidden;
     border-bottom-style: hidden;
+
+    border-width: 2px ;
+    border-bottom-style: groove;
+    border-color: rgb(118, 118, 118);
 }
 
 /* The hero image */
