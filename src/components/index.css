@@ -25,11 +25,22 @@ html, body {
     padding-top: 2em;
 }
 
+input[type="search"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input[type="text"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
 input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    
+    border-radius: 0%;
+
     border-top-style: hidden;
     border-right-style: hidden;
     border-left-style: hidden;
