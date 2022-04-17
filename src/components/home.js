@@ -16,7 +16,9 @@ function Home () {
         };
 
         return (
-            <a className="recommendations-box" href={drama[3]} target="_blank">
+            <a className="recommendations-box" href={
+                drama[3].slice(0, 8) + "www." + drama[3].slice(8, drama[3].length)
+            } target="_blank">
                 <img src={drama[1]} className="recommendations-image"/>
                 <div className="recommendations-title">
                     {drama[0]}
