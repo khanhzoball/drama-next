@@ -3,26 +3,20 @@ html, body {
     height: 100%;
 }
 
-.search-input::-webkit-input-placeholder {
-    font-family: 'Courier Prime', monospace;
-}
-
-.search-input:-ms-input-placeholder {
-    font-family: 'Courier Prime', monospace;
-}
-
-.search-input:-moz-placeholder {
-    font-family: 'Courier Prime', monospace;
-}
-
-.search-input::-moz-placeholder {
-    font-family: 'Courier Prime', monospace;
-}
-
 .hero-container {
     display: flex;
     align-items: center;
     padding-top: 2em;
+}
+
+
+/* The hero image */
+.hero-image {
+    height: 30vh;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    position: center;
 }
 
 input[type="search"] {
@@ -59,15 +53,6 @@ input {
     border-color: rgb(118, 118, 118);
 }
 
-/* The hero image */
-.hero-image {
-    height: 30vh;
-    width: 100%;
-    display: block;
-    object-fit: cover;
-    position: center;
-}
-
 .slogan {
     color: rgb(55, 53, 47);
     font-size: 32px;
@@ -91,14 +76,31 @@ input {
     display: flex;
 }
 
+
+.search-input::-webkit-input-placeholder {
+    font-family: 'Courier Prime', monospace;
+}
+
+.search-input:-ms-input-placeholder {
+    font-family: 'Courier Prime', monospace;
+}
+
+.search-input:-moz-placeholder {
+    font-family: 'Courier Prime', monospace;
+}
+
+.search-input::-moz-placeholder {
+    font-family: 'Courier Prime', monospace;
+}
+
 .search-box {
     margin: 0 auto;
+    margin-top: 1em;
     max-width: 416px;
 }
 
 .search-bar {
     margin: 0 auto;
-    margin-top: 1em;
     margin-bottom: 8px;
     display: flex;
     flex-direction: row;
@@ -116,6 +118,7 @@ input {
     border-width: 2px ;
     border-bottom-style: groove;
     border-color: rgb(118, 118, 118);
+    padding-bottom: 4px;
 }
 
 .search-icon:hover {
@@ -141,10 +144,14 @@ SearchIcon {
 }
 
 
-@media only screen and (max-width: 1100px) {
-    search-description {
-        font-size: 10px;
+@media only screen and (max-width: 600px) {
+    .hero-image {
+        height: 20vh;
+    }
+
+    .search-description {
+        font-size: 8px;
         font-weight: 700;
-        width: 650px;
+        max-width: 350px;
     }
   }

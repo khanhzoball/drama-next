@@ -25,11 +25,26 @@ function Search( { placeholder, data } ) {
         setFilteredData([]);
     };
 
+    const handleClick = () => {
+        console.log("hi")
+        const title = document.getElementById("search-input").value;
+        fetch("/recommendations", {
+            method: "POST",
+            body: JSON.stringify({
+                'title': title,
+            }),
+        })
+        .then(res => res.json())
+        .then(resjon => {
+            console.log(resjon)
+        });
+    };
+
     return (
         <div className="search-box">
             <div className="search-bar">
                 <input type="text" className="search-input" id="search-input" placeholder="what have you watched recently?" onChange={handleFilter}/>
-                <SearchIcon className="search-icon"/>
+                <i className="fa fa-search search-icon" aria-hidden="true" onClick={() => handleClick()}></i>
             </div>
             {filteredData.length != 0 && (
                 <div className="results">

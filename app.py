@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, request, Response
 import pandas as pd
 import os
 from dotenv import load_dotenv
@@ -6,6 +6,7 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 from itertools import compress
+import json
 
 load_dotenv()
 
@@ -229,12 +230,22 @@ def index():
 def hello():
     return "hello world"
 
-@app.route('/title/<int:idx>')
-def title(idx):
-    title = df.iloc[idx]["title"]
-    # recommendations = get_top_recommendations(title, tf_idf_w=.35, soup_w=.525, weighted_score_w=.05, watchers_w=.075)
-    recommendations = get_top_recommendations_cast(title, tf_idf_w=.05, soup_w=.70, weighted_score_w=.15, watchers_w=.10)
-    return str(recommendations)
+# @app.route('/title/<int:idx>')
+@app.route('/recommendations', methods=["POST"])
+def recommendations():
+    data = json.loads(request.data.decode("utf-8"))
+
+    title = data["title"]
+
+    top_recommendations = get_top_recommendations(title, tf_idf_w=.35, soup_w=.525, weighted_score_w=.05, watchers_w=.075)
+    top_recommendations_cast = get_top_recommendations_cast(title, tf_idf_w=.05, soup_w=.70, weighted_score_w=.15, watchers_w=.10)
+
+    recommendations = {
+        "top_recommendations": top_recommendations,
+        "top_recommendations_cast": top_recommendations_cast,
+    }
+
+    return Response(json.dumps(recommendations), status=200, mimetype='application/json')
 
 if __name__ == "__main__":
     app.run(debug=True)
