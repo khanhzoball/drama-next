@@ -3,8 +3,7 @@ import "./index.css";
 import SearchIcon from '@mui/icons-material/Search';
 import { Title } from "@material-ui/icons";
 
-function Search( { placeholder, data } ) {
-
+function Search( { data, func } ) {
     const [filteredData, setFilteredData] = useState([]);
 
     const handleFilter = (e) => {
@@ -35,8 +34,9 @@ function Search( { placeholder, data } ) {
             }),
         })
         .then(res => res.json())
-        .then(resjon => {
-            console.log(resjon)
+        .then(resjson => {
+            console.log(resjson);
+            func(resjson['top_recommendations']);
         });
     };
 

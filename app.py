@@ -168,7 +168,8 @@ def get_top_recommendations(title, tf_idf_w, soup_w, weighted_score_w, watchers_
     
 
     # Return the top 10 most similar movies
-    return list(df['title'].iloc[movie_indices])
+    return [[df['title'].iloc[i], df['img_url'].iloc[i], df['score'].iloc[i], df['url'].iloc[i]] for i in movie_indices]
+    
 ####################################################################################################################################
 ####################################################################################################################################
 

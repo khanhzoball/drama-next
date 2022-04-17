@@ -3,6 +3,11 @@ html, body {
     height: 100%;
 }
 
+a {
+    color:rgb(55, 53, 47);
+    text-decoration: none;
+}
+
 .hero-container {
     display: flex;
     align-items: center;
@@ -137,6 +142,73 @@ input {
 
 .results::-webkit-scrollbar {
     display: none;
+}
+
+.recommendations-container {
+
+}
+
+.recommendations-description {
+    font-size: 14px;
+    font-weight: 700;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 1em;
+    color: rgb(217, 115, 13);
+    background-color: rgb(251, 236, 221);
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+}
+
+.recommendations-header {
+    font-size: 14px;
+    font-weight: thin;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 1em;
+    display: flex;
+}
+
+.recommendations-row {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.recommendations-box {
+    height: 220px;
+    border-radius: 3px;
+    max-width: 110px;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.recommendations-box:hover {
+    cursor: pointer;
+}
+
+.recommendations-image {
+    max-width: 110px;
+}
+
+.recommendations-title {
+    font-size: 10px;
+    font-weight: thin;
+    padding: .5em;
+}
+.recommendations-star {
+    font-size: 10px;
+    font-weight: thin;
+    padding: .5em;
+    margin-top: auto;
 }
 
 SearchIcon {
