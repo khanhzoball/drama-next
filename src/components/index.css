@@ -71,7 +71,6 @@ input {
 .slogan {
     color: rgb(55, 53, 47);
     font-size: 32px;
-    font-weight: 700;
     line-height: 1.2;
     text-align: center;
     margin-top: 1em;
@@ -80,7 +79,7 @@ input {
 .search-description {
     font-size: 14px;
     font-weight: 700;
-    width: 650px;
+    max-width: 600px;
     margin: 0 auto;
     margin-top: 1em;
     color: rgb(217, 115, 13);
@@ -89,15 +88,18 @@ input {
     padding-bottom: 7px;
     padding-left: 5px;
     padding-right: 5px;
+    display: flex;
 }
 
 .search-box {
     margin: 0 auto;
+    max-width: 416px;
 }
 
 .search-bar {
     margin: 0 auto;
     margin-top: 1em;
+    margin-bottom: 8px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -111,14 +113,38 @@ input {
 }
 
 .search-icon {
-    background-color: transparent;
-    display: flex;
-    align-items: center;
     border-width: 2px ;
     border-bottom-style: groove;
     border-color: rgb(118, 118, 118);
 }
 
+.search-icon:hover {
+    cursor: pointer;
+}
+
+.results {
+    max-height: 72px;
+    overflow: hidden;
+    overflow-y: auto;    
+}
+
+.results:hover {
+    cursor: pointer;
+}
+
+.results::-webkit-scrollbar {
+    display: none;
+}
+
 SearchIcon {
     background-color: transparent;
 }
+
+
+@media only screen and (max-width: 1100px) {
+    search-description {
+        font-size: 10px;
+        font-weight: 700;
+        width: 650px;
+    }
+  }
