@@ -23,7 +23,7 @@ function Home () {
 
         const redirect = () => {
             console.log(2);
-            window.location.replace(drama[3]);
+            window.open("https://www.google.com/search?q=" + drama[0].replace(" ", "+"), '_blank');
         };
 
         return (
