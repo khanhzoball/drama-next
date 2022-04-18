@@ -23,13 +23,11 @@ function Home () {
 
         const redirect = () => {
             console.log(2);
-            window.location.href = drama[3];
+            window.location.replace(drama[3]);
         };
 
         return (
-            <a className="recommendations-box" href={
-                drama[3].slice(0, 8) + "www." + drama[3].slice(8, drama[3].length)
-            } target="_blank" style={{ marginTop: side ? "1em" : "0em"}}>
+            <div className="recommendations-box" onClick={e => redirect()} style={{ marginTop: side ? "1em" : "0em"}}>
                 <img src={drama[1]} className="recommendations-image"/>
                 <div className="recommendations-title">
                     {drama[0]}
@@ -37,7 +35,7 @@ function Home () {
                 <div className="recommendations-star">
                     <i class="fa fa-star" style={{color: "yellow"}} ria-hidden="true"></i> {drama[2]}
                 </div>
-            </a>            
+            </div>            
         )
     }
 
