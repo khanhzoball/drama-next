@@ -36,7 +36,8 @@ function Search( { data, func } ) {
         .then(res => res.json())
         .then(resjson => {
             console.log(resjson);
-            func(resjson['top_recommendations']);
+            func[0](resjson['top_recommendations']);
+            func[1](resjson['top_recommendations_cast']);
         });
     };
 

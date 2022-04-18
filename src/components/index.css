@@ -69,9 +69,7 @@ input {
 .search-description {
     font-size: 14px;
     font-weight: 700;
-    max-width: 600px;
     margin: 0 auto;
-    margin-top: 1em;
     color: rgb(217, 115, 13);
     background-color: rgb(251, 236, 221);
     padding-top: 7px;
@@ -144,15 +142,45 @@ input {
     display: none;
 }
 
-.recommendations-container {
+.body-container {
+    max-width: 1060px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 1em;
+}
 
+.bar {
+    min-width: 180px;
+    max-width: 180px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.bar-description {
+    max-width: 180px;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgb(217, 115, 13);
+    background-color: rgb(251, 236, 221);
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+}
+
+.recommendations-container {
+    margin: 0 auto;
+    min-width: 620px;
+    max-width: 620px;
 }
 
 .recommendations-description {
     font-size: 14px;
     font-weight: 700;
-    max-width: 600px;
-    margin: 0 auto;
     margin-top: 1em;
     color: rgb(217, 115, 13);
     background-color: rgb(251, 236, 221);
@@ -166,15 +194,11 @@ input {
 .recommendations-header {
     font-size: 14px;
     font-weight: thin;
-    max-width: 600px;
-    margin: 0 auto;
     margin-top: 1em;
     display: flex;
 }
 
 .recommendations-row {
-    max-width: 600px;
-    margin: 0 auto;
     margin-top: 1em;
     display: flex;
     flex-direction: row;

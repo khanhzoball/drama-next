@@ -218,7 +218,7 @@ def get_top_recommendations_cast(title, tf_idf_w, soup_w, weighted_score_w, watc
     
 
      # Return the top 10 most similar movies
-    return list(df['title'].iloc[movie_indices])
+    return [[df['title'].iloc[i], df['img_url'].iloc[i], df['score'].iloc[i], df['url'].iloc[i]] for i in movie_indices]
     #.sort_values(by=['watchers'], ascending=False)['title']
 ####################################################################################################################################
 ####################################################################################################################################
@@ -247,6 +247,14 @@ def recommendations():
     }
 
     return Response(json.dumps(recommendations), status=200, mimetype='application/json')
+
+@app.route('/trending', methods=["GET"])
+def trending():
+    trending_idx = [18, 24, 645]
+
+    trending_dramas = [[df['title'].iloc[i], df['img_url'].iloc[i], df['score'].iloc[i], df['url'].iloc[i]] for i in trending_idx]
+
+    return Response(json.dumps({"trending_dramas": trending_dramas}), status=200, mimetype='application/json')
 
 if __name__ == "__main__":
     app.run(debug=True)

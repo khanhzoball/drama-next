@@ -7,8 +7,19 @@ import kdrama from "./kdrama.json"
 function Home () {
 
     const [recs, setRecs] = useState([]);
+    const [recsCast, setRecsCast] = useState([]);
+    const [trending, setTrending] = useState([]);
 
-    const createBox = (drama) => {
+    useEffect( () => {
+        fetch("/trending")
+        .then(res => res.json())
+        .then(resjson => {
+            console.log(resjson)
+            setTrending(resjson["trending_dramas"])
+        });
+    }, [])
+
+    const createBox = (drama, side) => {
 
         const redirect = () => {
             console.log(2);
@@ -18,7 +29,7 @@ function Home () {
         return (
             <a className="recommendations-box" href={
                 drama[3].slice(0, 8) + "www." + drama[3].slice(8, drama[3].length)
-            } target="_blank">
+            } target="_blank" style={{ marginTop: side ? "1em" : "0em"}}>
                 <img src={drama[1]} className="recommendations-image"/>
                 <div className="recommendations-title">
                     {drama[0]}
@@ -38,23 +49,59 @@ function Home () {
             <div className="slogan">
                 Welcome to DramaNext!
             </div>
-            <div className="search-description">
-                <span style={{color: "rgb(55, 53, 47)"}}>&#9654;</span>&nbsp; CHOOSE A KDRAMA YOU LIKE AND WE'LL RECOMMEND SOME MORE SIMILAR
-            </div>
-            <Search data={kdrama} func={setRecs}/>
-            <div className="recommendations-container">
-                <div className="recommendations-description">
-                    <i class="fa fa-list" style={{color: "rgb(55, 53, 47)"}} ria-hidden="true"></i>&nbsp; RECOMMENDATIONS
-                </div>
-                <div className="recommendations-header">
-                    TOP RECOMMENDATIONS
-                </div>
-                <div className="recommendations-row">
-                {
-                        recs.slice(0,5).map( (drama) => {
-                            return createBox(drama)
+            <div className="body-container">
+                <div className="bar">
+                    <div className="bar-description">
+                    RECENTLY COMPLETED
+                    </div>
+                    {
+                        trending.map( (drama) => {
+                            return createBox(drama, true)
                         })
-                }
+                    }
+                </div>
+                <div className="recommendations-container">
+                    <div className="search-description">
+                        <span style={{color: "rgb(55, 53, 47)"}}>&#9654;</span>&nbsp; CHOOSE A KDRAMA YOU LIKE AND WE'LL RECOMMEND SOME MORE SIMILAR
+                    </div>
+                    <Search data={kdrama} func={[setRecs, setRecsCast]}/>
+                    <div className="recommendations-description">
+                        <i class="fa fa-list" style={{color: "rgb(55, 53, 47)"}} ria-hidden="true"></i>&nbsp; RECOMMENDATIONS
+                    </div>
+                    {recs.length !=0 && (
+                        <div className="recommendations-header">
+                            TOP RECOMMENDATIONS
+                        </div>
+                    )}
+                    <div className="recommendations-row">
+                    {
+                            recs.slice(0,5).map( (drama) => {
+                                return createBox(drama, false)
+                            })
+                    }
+                    </div>
+                    {recsCast.length !=0 && (
+                        <div className="recommendations-header">
+                            WATCH IF YOU LIKED THE CAST
+                        </div>
+                    )}
+                    <div className="recommendations-row">
+                    {
+                            recsCast.slice(0,5).map( (drama) => {
+                                return createBox(drama, false)
+                            })
+                    }
+                    </div>
+                </div>
+                <div className="bar">
+                    <div className="bar-description">
+                    TRENDING DRAMAS
+                    </div>
+                    {
+                        trending.map( (drama) => {
+                            return createBox(drama, true)
+                        })
+                    }
                 </div>
             </div>
         </div>
