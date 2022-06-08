@@ -3,6 +3,9 @@ orbs:
   python: circleci/python@2.0.3
 jobs:
   build-and-test:
+
+    runs-on: ubuntu-latest
+    
     docker:
       - image: cimg/python:3.10.4
     steps:
@@ -10,12 +13,12 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - run: 
-          name: install requirements
+          name: Install requirements
           command: pip install -r requirements.txt
       - run:
           name: Run tests
-          command: pytest test_app.py
+          command: pytest
 workflows:
-  sample:
+  main:
     jobs:
       - build-and-test
