@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 /DramaNextEnv
+
+.pytest_cache
+__pycache__
