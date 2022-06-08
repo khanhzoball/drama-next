@@ -6,6 +6,7 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 from itertools import compress
+import pytest
 import json
 
 load_dotenv()
@@ -35,6 +36,9 @@ def clean_data(x):
             return str.lower(x.replace(" ", ""))
         else:
             return ''
+
+df["country"] = df["country"].apply(lambda x: x.strip())
+df["type"] = df["type"].apply(lambda x: x.strip())
 
 df["ranked"] = pd.to_numeric(df["ranked"].str.replace("#", ""))
 df["popularity"] = pd.to_numeric(df["popularity"].str.replace("#", ""))
@@ -255,6 +259,17 @@ def trending():
     trending_dramas = [[df['title'].iloc[i], df['img_url'].iloc[i], df['score'].iloc[i], df['url'].iloc[i]] for i in trending_idx]
 
     return Response(json.dumps({"trending_dramas": trending_dramas}), status=200, mimetype='application/json')
+
+
+#################################### Tests #################################
+
+@app.route("/test")
+def test():
+    return "Testing, Flask!"
+
+@app.route("/test/dataframe")
+def test_dataframe():
+    return jsonify({"df": df.to_json(orient=None)})
 
 if __name__ == "__main__":
     app.run(debug=True)
