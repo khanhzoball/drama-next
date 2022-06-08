@@ -10,12 +10,12 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - run: 
-          name: install requirements
+          name: Install requirements
           command: pip install -r requirements.txt
       - run:
           name: Run tests
           command: pytest
 workflows:
-  sample:
+  main:
     jobs:
       - build-and-test
