@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import banner1 from "./images/banner1.jpg"
+import banner from "./images/banner4.jpg"
 import SearchIcon from '@mui/icons-material/Search';
 import Search from "./search";
 import kdrama from "./kdrama.json"
@@ -52,7 +52,7 @@ function Home () {
     return (
         <div>
             <div className="hero-container">
-                <img src={banner1} className="hero-image"/>
+                <img src={banner} className="hero-image"/>
             </div>
             <div className="slogan">
                 Welcome to DramaNext!
