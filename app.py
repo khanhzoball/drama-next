@@ -2,7 +2,6 @@ from flask import Flask, jsonify, request, Response
 import pandas as pd
 import os
 from dotenv import load_dotenv
-import re
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 from itertools import compress
