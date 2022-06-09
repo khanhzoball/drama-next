@@ -76,5 +76,6 @@ def get_clean_data():
     c = r.mean()
 
     df["weighted_score"] = ((v*r)/(v+m)) + ((m*c)/(v+m))
+    
 
-    return pd
+    return df
