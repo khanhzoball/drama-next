@@ -1,5 +1,8 @@
 import pandas as pd
 import re
+from itertools import compress
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 
 def hello():
     print("hello world")
@@ -79,3 +82,52 @@ def get_clean_data():
     
 
     return df
+
+def create_soup(x, director_w, genres_w, tags_w, mainrole_w, supportrole_w):
+    soup = ""
+    
+    for i in range(director_w):
+        soup += ' '.join(x['director_list']) + ' '
+    for i in range(genres_w):
+        soup += ' '.join(x['genres_list']) + ' '
+    for i in range(tags_w):
+        soup += ' '.join(x['tags_list']) + ' '
+    for i in range(mainrole_w):
+        soup += ' '.join(x['mainrole_list']) + ' '
+    for i in range(supportrole_w):
+        soup += ' '.join(x['supportrole_list']) + ' '
+    return soup
+
+
+def get_recommendations(df, soup, title, tf_idf_w, soup_w, weighted_score_w, watchers_w, cosine_sim_tf_idf):
+    indices = pd.Series(df.index, index=df['title']).drop_duplicates()
+    max_watchers = df['watchers'].max()
+
+    count = CountVectorizer(stop_words='english')
+    count_matrix = count.fit_transform(soup)
+    cosine_sim = cosine_similarity(count_matrix, count_matrix)
+
+    # Get the index of the movie that matches the title
+    idx = indices[title]
+
+    # Get the pairwsie similarity scores of all movies with that movie
+    sim_scores_tf_idf = list(enumerate(cosine_sim_tf_idf[idx]))
+    sim_scores_soup = list(enumerate(cosine_sim[idx]))
+    
+    recommend_scores = []
+    
+    for i in range(len(sim_scores_tf_idf)):
+        watchers_ratio = df['watchers'].iloc[i]/max_watchers
+        diminished_watchers = 2*watchers_ratio / (2*watchers_ratio + .1)
+        modified_score = tf_idf_w*sim_scores_tf_idf[i][1] + soup_w*sim_scores_soup[i][1] + weighted_score_w*(df['score'].iloc[i]/10) + watchers_w*diminished_watchers 
+        recommend_scores.append((i, modified_score))
+    
+    recommend_scores = list(compress(recommend_scores, df['watchers'] >= 10000))
+    recommend_scores = sorted(recommend_scores, key=lambda x: x[1], reverse=True)
+    recommend_scores = recommend_scores[1:11]
+    
+    movie_indices = [i[0] for i in recommend_scores]
+    
+
+    # Return the top 10 most similar movies
+    return [[df['title'].iloc[i], df['img_url'].iloc[i], df['score'].iloc[i], df['url'].iloc[i]] for i in movie_indices]
