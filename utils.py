@@ -7,8 +7,7 @@ from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 def hello():
     print("hello world")
 
-def get_clean_data():
-    data_url = "https://raw.githubusercontent.com/khanhzoball/drama-next/main/kdrama.csv"
+def get_clean_data(data_url):
     df = pd.read_csv(data_url)
 
     # lowercases names and strips white space
