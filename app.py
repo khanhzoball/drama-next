@@ -8,6 +8,7 @@ from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 from itertools import compress
 import pytest
 import json
+from utils import hello
 
 load_dotenv()
 
