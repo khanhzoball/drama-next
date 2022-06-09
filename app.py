@@ -67,7 +67,7 @@ def recommendations():
 
 @app.route('/recently-finished', methods=["GET"])
 def recently_finished():
-    idx = [18, 24, 645]
+    idx = [7, 41, 161]
 
     dramas = [[df['title'].iloc[i], df['img_url'].iloc[i], df['score'].iloc[i], df['url'].iloc[i]] for i in idx]
 
