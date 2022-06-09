@@ -121,6 +121,8 @@ def get_recommendations(df, soup, title, tf_idf_w, soup_w, weighted_score_w, wat
     
     movie_indices = [i[0] for i in recommend_scores]
     
+    # for testing
+    recommend_scores = [recommend_scores[1] for x in recommend_scores]
 
     # Return the top 10 most similar movies
-    return [[df['title'].iloc[i], df['img_url'].iloc[i], df['score'].iloc[i], df['url'].iloc[i]] for i in movie_indices]
+    return {"recommendations": [[df['title'].iloc[i], df['img_url'].iloc[i], df['score'].iloc[i], df['url'].iloc[i]] for i in movie_indices], "score": recommend_scores}

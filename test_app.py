@@ -3,6 +3,8 @@ import pandas as pd
 import pytest
 import numpy as np
 from app import app
+from utils import get_clean_data
+import random
 
 def test_0():
     response = app.test_client().get('/test')
@@ -30,3 +32,23 @@ def test_dictionary():
     assert all(type(x) is list for x in list(df.mainrole_list))
     assert all(type(x) is list for x in list(df.supportrole_list))
     assert all(type(x) is list for x in list(df.genres_list))
+
+def test_recommendations_sort():
+    df = get_clean_data(data_url="https://raw.githubusercontent.com/khanhzoball/drama-next/main/kdrama.csv")
+    valid = []
+
+    for i in range(5):
+        j = random.randint(0, df.shape[0])
+        response = app.test_client().post('/recommendations', json = {
+            "title": df.iloc[j]["title"]
+        })
+
+        score_top = json.loads(response.data.decode("utf-8")).get("score_top")
+        score_cast = json.loads(response.data.decode("utf-8")).get("score_top_cast")
+
+        valid.append(score_top == sorted(score_top))
+        valid.append(score_cast == sorted(score_cast))
+    
+    assert(all(valid))
+
+        

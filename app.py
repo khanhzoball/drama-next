@@ -59,8 +59,10 @@ def recommendations():
                                                 max_watchers=max_watchers, cosine_sim=cosine_sim_cast)
 
     recommendations = {
-        "top_recommendations": top_recommendations,
-        "top_recommendations_cast": top_recommendations_cast,
+        "top_recommendations": top_recommendations["recommendations"],
+        "top_recommendations_cast": top_recommendations_cast["recommendations"],
+        "score_top": top_recommendations["score"],
+        "score_top_cast": top_recommendations_cast["score"]
     }
 
     return Response(json.dumps(recommendations), status=200, mimetype='application/json')
