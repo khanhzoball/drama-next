@@ -37,10 +37,9 @@ def test_recommendations_sort():
     df = get_clean_data(data_url="https://raw.githubusercontent.com/khanhzoball/drama-next/main/kdrama.csv")
     valid = []
 
-    for i in range(5):
-        j = random.randint(0, df.shape[0])
+    for i in range(100):
         response = app.test_client().post('/recommendations', json = {
-            "title": df.iloc[j]["title"]
+            "title": df.iloc[i]["title"]
         })
 
         score_top = json.loads(response.data.decode("utf-8")).get("score_top")
@@ -51,4 +50,8 @@ def test_recommendations_sort():
     
     assert(all(valid))
 
-        
+# def test_recommendations_sort():
+#     response = app.test_client().post('/recommendations', json = {
+#             "title": "Start-Up (2020)"
+#     })
+
