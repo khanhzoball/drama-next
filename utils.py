@@ -99,13 +99,7 @@ def create_soup(x, director_w, genres_w, tags_w, mainrole_w, supportrole_w):
     return soup
 
 
-def get_recommendations(df, soup, title, tf_idf_w, soup_w, weighted_score_w, watchers_w, cosine_sim_tf_idf):
-    indices = pd.Series(df.index, index=df['title']).drop_duplicates()
-    max_watchers = df['watchers'].max()
-
-    count = CountVectorizer(stop_words='english')
-    count_matrix = count.fit_transform(soup)
-    cosine_sim = cosine_similarity(count_matrix, count_matrix)
+def get_recommendations(df, soup, title, tf_idf_w, soup_w, weighted_score_w, watchers_w, cosine_sim_tf_idf, indices, max_watchers, cosine_sim):
 
     # Get the index of the movie that matches the title
     idx = indices[title]
