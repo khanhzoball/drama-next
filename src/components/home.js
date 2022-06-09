@@ -8,14 +8,24 @@ function Home () {
 
     const [recs, setRecs] = useState([]);
     const [recsCast, setRecsCast] = useState([]);
+    const [recentlyFinished, setRecentlyFinished] = useState([]);
     const [trending, setTrending] = useState([]);
+
+    useEffect( () => {
+        fetch("/recently-finished")
+        .then(res => res.json())
+        .then(resjson => {
+            console.log(resjson)
+            setRecentlyFinished(resjson["dramas"])
+        });
+    }, [])
 
     useEffect( () => {
         fetch("/trending")
         .then(res => res.json())
         .then(resjson => {
             console.log(resjson)
-            setTrending(resjson["trending_dramas"])
+            setTrending(resjson["dramas"])
         });
     }, [])
 
@@ -53,7 +63,7 @@ function Home () {
                     RECENTLY COMPLETED
                     </div>
                     {
-                        trending.map( (drama) => {
+                        recentlyFinished.map( (drama) => {
                             return createBox(drama, true)
                         })
                     }

@@ -15,7 +15,8 @@ app = Flask(__name__, static_folder='build/', static_url_path='/')
 
 
 ## load the data
-df = get_clean_data()
+df = get_clean_data(data_url="https://raw.githubusercontent.com/khanhzoball/drama-next/main/kdrama.csv")
+trending_df = get_clean_data(data_url="https://raw.githubusercontent.com/khanhzoball/drama-next/main/trending-kdrama.csv")
 
 indices = pd.Series(df.index, index=df['title']).drop_duplicates()
 max_watchers = df['watchers'].max()
@@ -64,13 +65,21 @@ def recommendations():
 
     return Response(json.dumps(recommendations), status=200, mimetype='application/json')
 
+@app.route('/recently-finished', methods=["GET"])
+def recently_finished():
+    idx = [18, 24, 645]
+
+    dramas = [[df['title'].iloc[i], df['img_url'].iloc[i], df['score'].iloc[i], df['url'].iloc[i]] for i in idx]
+
+    return Response(json.dumps({"dramas": dramas}), status=200, mimetype='application/json')
+
 @app.route('/trending', methods=["GET"])
 def trending():
-    trending_idx = [18, 24, 645]
+    idx = [3, 6, 8]
 
-    trending_dramas = [[df['title'].iloc[i], df['img_url'].iloc[i], df['score'].iloc[i], df['url'].iloc[i]] for i in trending_idx]
+    dramas = [[trending_df['title'].iloc[i], trending_df['img_url'].iloc[i], trending_df['score'].iloc[i], trending_df['url'].iloc[i]] for i in idx]
 
-    return Response(json.dumps({"trending_dramas": trending_dramas}), status=200, mimetype='application/json')
+    return Response(json.dumps({"dramas": dramas}), status=200, mimetype='application/json')
 
 # Tests
 @app.route("/test")
