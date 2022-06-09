@@ -215,12 +215,23 @@ input {
     flex-direction: column;
 }
 
+.recommendations-box-gold {
+    height: 220px;
+    border-radius: 3px;
+    max-width: 110px;
+    box-shadow: rgba(220, 220, 0, 0.5) 0px 0px 0px 2px, rgba(220, 255, 0, 0.5) 0.5px 4px 5px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
 .recommendations-box:hover {
     cursor: pointer;
 }
 
 .recommendations-image {
     max-width: 110px;
+    border-radius: 3px;
 }
 
 .recommendations-title {

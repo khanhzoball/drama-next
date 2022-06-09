@@ -15,7 +15,6 @@ function Home () {
         fetch("/recently-finished")
         .then(res => res.json())
         .then(resjson => {
-            console.log(resjson)
             setRecentlyFinished(resjson["dramas"])
         });
     }, [])
@@ -24,7 +23,6 @@ function Home () {
         fetch("/trending")
         .then(res => res.json())
         .then(resjson => {
-            console.log(resjson)
             setTrending(resjson["dramas"])
         });
     }, [])
@@ -32,12 +30,11 @@ function Home () {
     const createBox = (drama, side) => {
 
         const redirect = () => {
-            console.log(2);
             window.open("https://www.google.com/search?q=" + drama[0].replace(" ", "+"), '_blank');
         };
 
         return (
-            <div className="recommendations-box" onClick={e => redirect()} style={{ marginTop: side ? "1em" : "0em"}}>
+            <div className={drama[2] >= 9 ? "recommendations-box-gold": "recommendations-box"} onClick={e => redirect()} style={{ marginTop: side ? "1em" : "0em"}}>
                 <img src={drama[1]} className="recommendations-image"/>
                 <div className="recommendations-title">
                     {drama[0]}
