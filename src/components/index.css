@@ -8,6 +8,20 @@ a {
     text-decoration: none;
 }
 
+#footer {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    height: 5vh;
+    justify-content: center;
+    padding-top: 5em;
+    width: 100%;
+  }
+  
+#footer h3 {
+    margin: 0;
+}
+
 .hero-container {
     display: flex;
     align-items: center;
@@ -226,6 +240,10 @@ input {
 }
 
 .recommendations-box:hover {
+    cursor: pointer;
+}
+
+.recommendations-box-gold:hover {
     cursor: pointer;
 }
 
