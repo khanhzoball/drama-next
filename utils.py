@@ -3,6 +3,7 @@ import re
 from itertools import compress
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
+import numpy as np
 
 def hello():
     print("hello world")
@@ -102,6 +103,10 @@ def get_recommendations(df, soup, title, tf_idf_w, soup_w, weighted_score_w, wat
 
     # Get the index of the movie that matches the title
     idx = indices[title]
+
+    if type(idx) is not np.int64:
+        idx = list(idx)
+        idx = idx[0]
 
     # Get the pairwsie similarity scores of all movies with that movie
     sim_scores_tf_idf = list(enumerate(cosine_sim_tf_idf[idx]))
